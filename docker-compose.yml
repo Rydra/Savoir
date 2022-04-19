@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  masternode:
+    image: rydra/multichain-master
+    init: true
+    stdin_open: true
+    tty: true
+    expose:
+      - 7557
+      - 8002
+    ports:
+      - "8002:8002"
+      - "7557:7557"
+    environment:
+      CHAINNAME: MyChain
+      NETWORK_PORT: 7557
+      RPC_PORT: 8002
+      RPC_USER: multichainrpc
+      RPC_PASSWORD: 79pgKQusiH3VDVpyzsM6e3kRz6gWNctAwgJvymG3iiuz
+      RPC_ALLOW_IP: 0.0.0.0/0.0.0.0
+      PARAM_TARGET_BLOCK_SIZE: target-block-time|30
+      PARAM_ANYONE_CAN_CONNECT: anyone-can-connect|true
+      PARAM_ANYONE_CAN_MINE: anyone-can-mine|true
+      PARAM_MAX_STD_OP_RETURNS_COUNT: max-std-op-returns-count|512

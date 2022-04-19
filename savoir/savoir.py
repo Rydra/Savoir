@@ -1,7 +1,8 @@
-import requests
 import json
 from base64 import b64encode
 import logging
+
+import httpx
 
 log = logging.getLogger('Savoir')
 
@@ -45,7 +46,7 @@ class Savoir():
             self.__chainname,
             name)
 
-    def __call__(self, *args):
+    async def __call__(self, *args):
         Savoir.__id_count += 1
         postdata = {'chain_name': self.__chainname,
             'version': '1.1',
@@ -55,7 +56,10 @@ class Savoir():
         url = ''.join(['http://', self.__rpchost, ':', self.__rpcport])
         encoded = json.dumps(postdata)
         log.info("Request: %s" % encoded)
-        r = requests.post(url, data=encoded, headers=self.__headers)
+
+        async with httpx.AsyncClient() as client:
+            r = await client.post(url, data=encoded, headers=self.__headers)
+
         if r.status_code == 200:
             log.info("Response: %s" % r.json())
             return r.json()['result']
