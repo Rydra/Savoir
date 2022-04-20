@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "savoir"
+name = "savoir-async"
 version = "0.1.0"
 description = ""
 authors = ["David <davigetto@gmail.com>"]
@@ -7,7 +7,6 @@ authors = ["David <davigetto@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 httpx = "^0.22.0"
-pytest = "^7.1.1"
 
 [tool.poetry.dev-dependencies]
 anyio = "^3.5.0"

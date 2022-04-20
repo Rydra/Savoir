@@ -1,6 +1,6 @@
 from anyio import run
 
-from savoir import Savoir
+from savoir_async import Savoir
 
 
 def test_make_savoir_request():
